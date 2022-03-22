@@ -10,8 +10,10 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "type": "module",
   "dependencies": {
     "express": "^4.17.3",
-    "mongoose": "^6.1.8"
+    "mongoose": "^6.1.8",
+    "dotenv": "^14.3.0"
   }
 }
