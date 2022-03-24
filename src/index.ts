@@ -1,14 +1,11 @@
 import 'dotenv/config'
 import express from 'express'
 import path from 'path'
-import connectDB from './db/mongoose.js';
-import bookRouter from './routes/books.js'
+import connectDB from './db/mongoose';
+import bookRouter from './routes/books'
 
 const app = express();
 app.use(express.json());
-// app.use(cors({
-//   origin: '*'
-// }))
 
 app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, '/index.html'));

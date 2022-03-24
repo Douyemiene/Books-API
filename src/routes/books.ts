@@ -21,4 +21,22 @@ bookRouter.get('/', async (req, res) => {
     
 })
 
+
+//add categories, one-to-many relationship. that's a category has many books
+//add users, users should be able to borrow a book, return a book, search a book using its _id
+//users can see books that he has borrowed and read
+//admin that can see all users that have borrowed a bookRouter
+//add permissions admin and users 
+
+//run through NGINX on docker-compose
+//refactor to suit best practices
+//write tests.  Mocha n chai. unit tests
+//convert to Microservice
+
+
+//reverse a string 
+//goes through a 2d array and return an array of the largest numss
+
+
+
 export default bookRouter
