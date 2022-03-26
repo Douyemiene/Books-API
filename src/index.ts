@@ -3,6 +3,7 @@ import express from 'express'
 import path from 'path'
 import connectDB from './db/mongoose';
 import bookRouter from './routes/books'
+import authRouter from './routes/auth'
 
 const app = express();
 app.use(express.json());
@@ -12,6 +13,7 @@ app.get('/', function(req, res) {
 });
 
 app.use('/books',bookRouter)
+app.use('/auth',authRouter)
 
 const PORT = process.env.PORT || 3000;
 

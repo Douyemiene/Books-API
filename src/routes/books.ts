@@ -4,8 +4,8 @@ const bookRouter = Router()
 
 bookRouter.post('/', async (req, res) => {
    try{
-    const id = await createBook(req.body)
-    res.status(201).json({status:'OK',message:'Book created', data: {id}})
+    const token = await createBook(req.body)
+    res.status(201).json({status:'OK',message:'Book created', data: {token}})
    }catch(e){
     res.status(400).json({status:'FAILED',message:'Book creation failed', data: null})
    }
