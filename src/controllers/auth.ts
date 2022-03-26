@@ -21,7 +21,25 @@ export const register = async (user) => {
         }
 }
 
-
+export const login = async(email, password) => {
+  try{
+    const user = await Users.findOne({ email });
+    if (user) {
+      const match = await bcrypt.compare(password, user.password);
+      if (match) {
+        const token = createToken({id: user._id});
+        return {email:user.email,name: user.name,token};
+      }
+    else{
+        throw Error
+    }
+  }
+    
+  }catch (err) {
+    console.log({err})
+    throw err
+  }
+}
 
 
 

@@ -15,6 +15,14 @@ authRouter.post('/signup', async (req, res) => {
    }
 })
 
-
+authRouter.post('/login', async (req, res) => {
+    const { email, password } = req.body;
+    try{
+        const userandToken = await login(email, password);
+        res.status(201).json({status:'OK',message:'User login was successful', data:{...userandToken}})
+       }catch(e){
+        res.status(400).json({status:'FAILED',message: 'User login failed', data: null})
+       }
+ })
 
 export default authRouter
