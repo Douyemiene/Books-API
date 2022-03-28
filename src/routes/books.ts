@@ -1,13 +1,18 @@
 import {Router} from 'express'
-import {createBook, getAllBooks} from '../controllers/books.js'
+import {createBook, getAllBooks, createBookCategory} from '../controllers/books.js'
 const bookRouter = Router()
 
 bookRouter.post('/', async (req, res) => {
    try{
-    const token = await createBook(req.body)
-    res.status(201).json({status:'OK',message:'Book created', data: {token}})
+    const id = await createBook(req.body)
+    res.status(201).json({status:'OK',message:'Book created', data: {id}})
    }catch(e){
-    res.status(400).json({status:'FAILED',message:'Book creation failed', data: null})
+    console.log({e})
+    let message = 'Book creation failed'
+    if(e.code = "11000"){
+        message = "Book already exists"
+    }
+    res.status(400).json({status:'FAILED',message, data: null})
    }
 })
 
@@ -21,22 +26,16 @@ bookRouter.get('/', async (req, res) => {
     
 })
 
-
-//add categories, one-to-many relationship. that's a category has many books
-//add users, users should be able to borrow a book, return a book, search a book using its _id
-//users can see books that he has borrowed and read
-//admin that can see all users that have borrowed a bookRouter
-//add permissions admin and users 
-
-//run through NGINX on docker-compose
-//refactor to suit best practices
-//write tests.  Mocha n chai. unit tests
-//convert to Microservice
-
-
-//reverse a string 
-//goes through a 2d array and return an array of the largest numss
-
+bookRouter.post('/category/:name', async (req, res) => {
+    const name = req.params.name;
+    try{
+     const id = await createBookCategory({name})
+     res.status(201).json({status:'OK',message:'Book Category created', data: {id}})
+    }catch(e){
+        console.log({e})
+     res.status(400).json({status:'FAILED',message:'Book category creation failed', data: null})
+    }
+ })
 
 
 export default bookRouter

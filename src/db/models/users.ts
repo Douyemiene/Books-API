@@ -1,5 +1,9 @@
 import mongoose from "mongoose";
 
+const reqString = {
+    type: String,
+    required: true
+}
 
 const UserSchema = new mongoose.Schema({
   email: {
@@ -7,14 +11,8 @@ const UserSchema = new mongoose.Schema({
       unique: true,
       required: true
   },
-  name: {
-    type: String,
-    required: true
-    },
-    password: {
-        type: String,
-        required: true
-    }
+  name: reqString,
+  password: reqString
 });
 
 

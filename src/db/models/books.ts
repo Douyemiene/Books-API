@@ -1,22 +1,32 @@
 import mongoose from "mongoose";
 
+const Schema = mongoose.Schema
 
-const BookSchema = new mongoose.Schema({
+const reqString = {
+  type: String,
+  required: true
+}
+
+const uniqReqString = {
+  ...reqString,  required: true
+}
+
+
+const BookSchema = new Schema({
   isbn: {
-      type: String,
-      unique: true,
+      ...reqString,
       required: true
   },
-  title: {
-    type: String,
-    required: true
-    },
-  author: {
-    type: String,
-    required: true
-  }
+  title: reqString,
+  author: reqString,
+});
+
+const bookCategory = new Schema({
+  name: uniqReqString,
+  books: [{type: Schema.Types.ObjectId, ref: 'book'}]
 });
 
 
-const Books = mongoose.model("Book", BookSchema);
-export default Books;
+const BookCategory = mongoose.model('bookCategory', bookCategory);
+const Books = mongoose.model("book", BookSchema);
+export {Books, BookCategory};
